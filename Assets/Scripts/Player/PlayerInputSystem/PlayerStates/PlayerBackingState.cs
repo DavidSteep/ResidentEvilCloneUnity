@@ -1,21 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerRunningState : PlayerBaseState
+public class PlayerBackingState : PlayerBaseState
 {
-    public PlayerRunningState(PlayerStateMachine stateMachine) : base(stateMachine) { }
+   public PlayerBackingState(PlayerStateMachine context) : base(context)
+    {
+
+    }
 
     public override void EnterState()
     {
-        Debug.Log("Entered Running state");
+        Debug.Log("Entered Backing state");
     }
 
     public override void UpdateState()
     {
         CheckStateSwitch();
-
-        var movement = _context.driveInput * _context.runSpeed * Time.deltaTime;
+        var movement = _context.driveInput * _context.backwardsWalkSpeed * Time.deltaTime;
         _context.transform.Translate(0, 0, movement);
         var rotation = _context.rotationInput * _context.rotationSpeed * Time.deltaTime;
         _context.transform.Rotate(0, rotation, 0);
@@ -23,24 +23,22 @@ public class PlayerRunningState : PlayerBaseState
 
     protected override void CheckStateSwitch()
     {
-        if(!_context.isRunning && _context.driveInput > 0)
+        if (_context.isRunning && _context.driveInput > 0)
+        {
+            SwitchState(_context.runState);
+            return;
+        }
+
+        if (_context.driveInput > 0)
         {
             SwitchState(_context.walkState);
             return;
         }
 
-        if (_context.driveInput < 0)
-        {
-            SwitchState(_context.backingState);
-            return;
-        }
-
-        if(_context.driveInput == 0)
+        if (_context.driveInput == 0 && _context.rotationInput == 0)
         {
             SwitchState(_context.idleState);
             return;
         }
     }
-
-    
 }

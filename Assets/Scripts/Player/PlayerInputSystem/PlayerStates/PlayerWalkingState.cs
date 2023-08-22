@@ -25,9 +25,22 @@ public class PlayerWalkingState : PlayerBaseState
 
     protected override void CheckStateSwitch()
     {
-        if(_context.isRunning)
+        if(_context.isRunning && _context.driveInput > 0)
         {
             SwitchState(_context.runState);
+            return;
+        }
+
+        if (_context.driveInput < 0)
+        {
+            SwitchState(_context.backingState);
+            return;
+        }
+
+        if (_context.driveInput == 0 && _context.rotationInput == 0)
+        {
+            SwitchState(_context.idleState);
+            return;
         }
     }
 
