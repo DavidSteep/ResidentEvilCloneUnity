@@ -155,7 +155,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e5df6798f23e9c4db34fc3895fc0d03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemInfo: {fileID: 11400000, guid: 3a3f8a4fc17f64249bf693e59a8e56c2, type: 2}
+  _itemType: {fileID: 0}
+  _amount: 0
 --- !u!65 &84367577
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -274,7 +275,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e5df6798f23e9c4db34fc3895fc0d03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemInfo: {fileID: 11400000, guid: 08a96f1943eb55047ad793ec405dd9ed, type: 2}
+  _itemType: {fileID: 0}
+  _amount: 0
 --- !u!65 &165112520
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -711,8 +713,9 @@ GameObject:
   - component: {fileID: 665315070}
   - component: {fileID: 665315075}
   - component: {fileID: 665315074}
-  - component: {fileID: 665315073}
   - component: {fileID: 665315076}
+  - component: {fileID: 665315077}
+  - component: {fileID: 665315079}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -786,23 +789,6 @@ Transform:
   - {fileID: 1847086772}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &665315073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 665315068}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37bad68925e451a4eb03375da4d47a99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _walkSpeed: 2
-  _reverseWalkSpeed: 1
-  _runSpeed: 6
-  _rotationSpeed: 120
-  _gunDamage: 2
 --- !u!54 &665315074
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -867,6 +853,61 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inventory: {fileID: 11400000, guid: 4eac2b071bba27b41b9fab17cb39f84b, type: 2}
   _itemsInPickUpRange: []
+--- !u!114 &665315077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665315068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: e4c6966c1d9d5bb45be9d3deb7f6adee, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e6a12f3b-5180-41bf-84f8-5d036e39c500
+    m_ActionName: DefaultControls/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 542fae5c-d07a-491b-9239-5e3ee4468152
+    m_ActionName: DefaultControls/Run[/Keyboard/leftCtrl]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: DefaultControls
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &665315079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665315068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a688ea40577d245489cd395a96521a44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _walkSpeed: 2
+  _backwardsWalkSpeed: 1
+  _runSpeed: 10
+  _rotationSpeed: 120
+  _playerInput: {fileID: 665315077}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1168,8 +1209,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2766372, y: -0.65626794, z: 0.28250816, w: 0.64263004}
-  m_LocalPosition: {x: 3.2377386, y: 4.0378804, z: 5.0277863}
+  m_LocalRotation: {x: 0.17247413, y: 0.025114827, z: -0.0043990393, w: 0.98468405}
+  m_LocalPosition: {x: 1.0645602, y: 2.4020405, z: -7.822754}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
